@@ -1,8 +1,0 @@
-{
-  "ts": "2026-11-11T04:08:00.000000+00:00",
-  "mode": "PAPER",
-  "balance": 200.0,
-  "agents": ["scanner", "auditor", "analyst", "executor", "risk"],
-  "heartbeat": true,
-  "waiting_room": 0
-}

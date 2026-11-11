@@ -32,7 +32,7 @@ if (DATA) localStorage.setItem("dataPath", DATA);
 async function poll() {
   if (!DATA) { document.getElementById("status").textContent = "no data path"; return; }
   try {
-    const r = await fetch("/d/" + DATA + "/state.json?t=" + Date.now());
+    const r = await fetch("d/" + DATA + "/state.json?t=" + Date.now());
     if (!r.ok) throw new Error(r.status);
     const s = await r.json();
     document.getElementById("mode").textContent = s.mode || "PAPER";

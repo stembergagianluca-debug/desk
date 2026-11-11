@@ -24,7 +24,16 @@
   <div id="status">loading…</div>
   <div class="row"><span>Agents</span><span id="agents">—</span></div>
   <div class="row"><span>Waiting room</span><span id="waiting">—</span></div>
+  <button onclick="showSettings()">Settings</button>
   <button onclick="location.reload()">Refresh</button>
+  <div id="settings" style="display:none; margin-top:20px;">
+    <h3>Settings</h3>
+    <div class="row"><span>Mode</span><span id="set-mode">PAPER</span></div>
+    <div class="row"><span>Min liquidity</span><span id="set-liq">40000</span></div>
+    <div class="row"><span>Max top10 %</span><span id="set-top10">25</span></div>
+    <div class="row"><span>Stop %</span><span id="set-stop">6</span></div>
+    <button onclick="hideSettings()">Back</button>
+  </div>
   <div id="feed"></div>
 <script>
 const FALLBACK = "8ec_VPu8aHRwLHUzlsTiIEkgNuEOssOcKWADFXrmuYM";
@@ -47,6 +56,12 @@ async function poll() {
 }
 setInterval(poll, 15000);
 poll();
+function showSettings() {
+  document.getElementById("settings").style.display = "block";
+}
+function hideSettings() {
+  document.getElementById("settings").style.display = "none";
+}
 </script>
 </body>
 </html>

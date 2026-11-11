@@ -15,7 +15,8 @@
     .green { color:var(--green); } .red { color:var(--red); }
     .row { display:flex; justify-content:space-between; padding:12px 0; border-bottom:1px solid #222; }
     button { background:#1a1a1a; color:var(--fg); border:0; padding:14px; border-radius:12px; font-size:16px; width:100%; margin-top:8px; }
-    #feed { margin-top:8px; color:#aaa; }
+    #feed { margin-top:8px; color:#aaa; font-size:14px; }
+    .item { padding:8px 0; border-bottom:1px solid #222; }
   </style>
 </head>
 <body>
@@ -51,6 +52,14 @@ async function poll() {
     document.getElementById("agents").textContent = (s.agents || []).join(" · ");
     document.getElementById("waiting").textContent = s.waiting_room ?? "—";
     document.getElementById("status").textContent = "live · " + new Date(s.ts).toLocaleTimeString();
+
+    const ar = await fetch("d/" + DATA + "/activity.json?t=" + Date.now());
+    if (ar.ok) {
+      const acts = await ar.json();
+      const feed = document.getElementById("feed");
+      if (acts.length === 0) feed.textContent = "No activity yet";
+      else feed.innerHTML = acts.map(a => `<div class="item">${a.agent}: ${a.title} · ${a.subtitle || ""}</div>`).join("");
+    }
   } catch (e) {
     document.getElementById("status").textContent = "offline · " + e.message;
   }

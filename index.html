@@ -27,7 +27,8 @@
   <button onclick="location.reload()">Refresh</button>
   <div id="feed"></div>
 <script>
-const DATA = window.location.hash.slice(1) || localStorage.getItem("dataPath") || "";
+const FALLBACK = "8ec_VPu8aHRwLHUzlsTiIEkgNuEOssOcKWADFXrmuYM";
+const DATA = window.location.hash.slice(1) || localStorage.getItem("dataPath") || FALLBACK;
 if (DATA) localStorage.setItem("dataPath", DATA);
 async function poll() {
   if (!DATA) { document.getElementById("status").textContent = "no data path"; return; }
